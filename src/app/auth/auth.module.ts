@@ -29,6 +29,12 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     FormsModule,
     ReactiveFormsModule,
     NgxIntlTelInputModule
+  ],
+  exports: [
+    CodeSignComponent,
+    SigninComponent,
+    SignupComponent,
+
   ]
 })
 export class AuthModule { }

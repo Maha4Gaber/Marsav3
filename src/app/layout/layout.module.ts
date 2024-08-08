@@ -13,18 +13,20 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HeaderTransComponent } from './header-trans/header-trans.component';
 import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
-   
+
     HeaderTransComponent,
     HomeComponent,LayoutComponent
   ],
   imports: [
     CommonModule,
+    AuthModule,
     LayoutRoutingModule,
     TranslateModule,
     NgSelectModule,
