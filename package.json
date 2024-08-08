@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:ssr": "ng build && ng run marsaV3:server",
-  "serve:ssr": "node dist/marsaV3/server/main.js"
+    "serve:ssr": "node dist/marsaV3/server/main.js"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "@angular/ssr": "^17.2.3",
     "@nguniversal/express-engine": "^7.0.2",
     "express": "^4.18.2",
+    "primeng": "^17.18.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
