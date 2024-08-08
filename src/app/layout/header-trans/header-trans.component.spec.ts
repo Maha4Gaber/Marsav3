@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SigninComponent } from './signin.component';
+import { HeaderTransComponent } from './header-trans.component';
 
-describe('SigninComponent', () => {
-  let component: SigninComponent;
-  let fixture: ComponentFixture<SigninComponent>;
+describe('HeaderTransComponent', () => {
+  let component: HeaderTransComponent;
+  let fixture: ComponentFixture<HeaderTransComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SigninComponent]
+      declarations: [HeaderTransComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(SigninComponent);
+    
+    fixture = TestBed.createComponent(HeaderTransComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,6 +10,9 @@ color: #0DB1FF;
   height: 48px !important;
   width: 379px !important;
 }
+.element-width{
+  width: 379px !important;
+}
 .input-text{
   padding: 13px 0 20px 10px;
 }
@@ -83,4 +86,14 @@ height: 48px;
 padding: 3 15 3 16;
 border-radius: 4 ;
 border: 1px solid #0DB1FF;
+}
+
+/**********************************/
+@media screen and (max-width: 992px){
+  .input-group{
+      width: 100% !important;
+  }
+  .element-width{
+      width: 100% !important;
+  }
 }
