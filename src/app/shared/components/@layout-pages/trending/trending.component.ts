@@ -1,8 +1,8 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { environment } from 'src/environments/environment';
+import { HttpService } from '../../../../../services/http/http.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-trending',

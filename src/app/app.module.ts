@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToursActivitiesComponent } from './Pages//tours-activities/tours-activities/tours-activities.component';
-import { FilterComponent } from './Componants/filter/filter.component';
 
 
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -20,13 +19,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     ToursActivitiesComponent,
-    FilterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxMaterialTimepickerModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -44,5 +43,5 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class AppModule { }
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, ' ../assets/i18n/', '.json');
 }

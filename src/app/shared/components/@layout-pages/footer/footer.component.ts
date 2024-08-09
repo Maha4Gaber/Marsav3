@@ -1,10 +1,10 @@
 import { Component, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '../../../../shared/services/auth.service';
 import { LoginComponent } from '../Auth/login/login.component';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { environment } from 'src/environments/environment.prod';
+import { HttpService } from '../../../../../services/http/http.service';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-footer',

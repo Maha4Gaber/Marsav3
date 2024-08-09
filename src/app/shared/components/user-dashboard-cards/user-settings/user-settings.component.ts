@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { environment } from 'src/environments/environment.prod';
+import { HttpService } from '../../../../../services/http/http.service';
+import { AuthService } from '../../../../../services/auth.service';
+import { environment } from '../../../../../environments/environment.prod';
 interface Item {
   id: number;
   name: string;

@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { LanguageService } from 'src/app/shared/services/language.service';
+import { AuthService } from '../../../../shared/services/auth.service';
+import { LanguageService } from '../../../../shared/services/language.service';
 import { LoginComponent } from '../Auth/login/login.component';
 import { HostListener } from '@angular/core';
 @Component({
