@@ -3,9 +3,25 @@ import { RouterModule, Routes } from '@angular/router';
 import { ToursActivitiesComponent } from './Pages/tours-activities/tours-activities.component';
 
 
-
 const routes: Routes = [
-  {path: 'ToursActivities', component: ToursActivitiesComponent},
+  // {
+  //   path: ':lang',
+  //   // loadChildren: () => import(`./Pages/home/home.module`).then(m => m.HomeModule)
+  // },
+  {
+    path: 'tour',
+    loadChildren: () => import(`./Pages/tours/tours.module`).then(m => m.ToursModule)
+  },
+
+
+
+
+
+  
+  // {
+  //   path: '**',
+  //   co
+  // }
 ];
 
 @NgModule({

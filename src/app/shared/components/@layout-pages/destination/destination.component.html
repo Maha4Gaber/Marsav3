@@ -1,0 +1,142 @@
+<!-- Destinantion v1 -->
+<div
+  *ngIf="destinations?.length > 0"
+  class="destinantion-block destinantion-v1 mt-4"
+>
+  <div class="container space-bottom-1 space-top-lg-1">
+    <div class="title text-center" style="color: #004796">
+      <h3 class="mb-5">Top Destinations</h3>
+    </div>
+    <div class="bd-example">
+      <div
+        id="carouselExampleCaptions"
+        class="carousel slide"
+        data-bs-ride="carousel"
+        data-interval="false"
+      >
+        <div *ngIf="isMobile" class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="0"
+            class="active"
+          ></button>
+          <button
+            *ngFor="let slidee of newSlides; let i = index"
+            data-bs-target="#carouselExampleCaptions"
+            [attr.data-bs-slide-to]="i + 1"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="slide row">
+              <div
+                class="col-12 col-md-3 col-lg-3 mb-3 mb-md-4"
+                *ngFor="let dist of slides[0]"
+              >
+                <div
+                  class="dist-card min-height-230 bg-img-hero rounded-border p-5 gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2 border-0 dropdown"
+                  [style.background]="'url(' + replaceSpace(dist?.cover) + ')'"
+                  [style.background-size]="'100% 100%'"
+                >
+                  <div class="w-100 d-flex justify-content-between mb-2">
+                    <div class="position-relative">
+                      <a
+                        [routerLink]="'search'"
+                        [queryParams]="{ id: dist.id }"
+                        class="destination-title text-white font-size-21 pb-3 mb-3 text-lh-1 d-block"
+                        >{{ dist?.name }}</a
+                      >
+
+                      <!-- Dropdown List -->
+                      <div class="destination-dropdown v1">
+                        <a
+                          [routerLink]="'search'"
+                          [queryParams]="{ id: dist.id }"
+                          class="text-white font-size-21 text-lh-1 d-block"
+                          >{{ dist?.name }}</a
+                        >
+
+                        <a
+                          class="dropdown-item"
+                          [routerLink]="'search'"
+                          [queryParams]="{ id: dist.id }"
+                          >View Tours</a
+                        >
+                      </div>
+                      <!-- End Dropdown List -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" *ngFor="let slidee of newSlides">
+            <div class="slide row">
+              <div
+                class="col-12 col-md-3 col-lg-3 mb-3 mb-md-4"
+                *ngFor="let dist of slidee"
+              >
+                <div
+                  class="dist-card min-height-230 bg-img-hero rounded-border p-5 gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2 border-0 dropdown"
+                  [style.background]="'url(' + replaceSpace(dist?.cover) + ')'"
+                  [style.background-size]="'100% 100%'"
+                >
+                  <div class="w-100 d-flex justify-content-between mb-2">
+                    <div class="position-relative">
+                      <a
+                        [routerLink]="'search'"
+                        [queryParams]="{ id: dist.id }"
+                        class="destination-title text-white font-weight-bold font-size-21 pb-3 mb-3 text-lh-1 d-block"
+                        >{{ dist?.name }}</a
+                      >
+
+                      <!-- Dropdown List -->
+                      <div class="destination-dropdown v1">
+                        <a
+                          [routerLink]="'search'"
+                          [queryParams]="{ id: dist.id }"
+                          class="text-white font-weight-bold font-size-21 text-lh-1 d-block"
+                          >{{ dist?.name }}</a
+                        >
+
+                        <a
+                          class="dropdown-item"
+                          [routerLink]="'search'"
+                          [queryParams]="{ id: dist.id }"
+                          >View Tours</a
+                        >
+                      </div>
+                      <!-- End Dropdown List -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          *ngIf="!isMobile"
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          *ngIf="!isMobile"
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Destinantion v1 -->

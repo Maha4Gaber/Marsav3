@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import {HttpService} from "../../../services/http/http.service"
+import { environment } from '../../..//environments/environment.prod';
+
+
 @Component({
   selector: 'app-tours-activities',
   templateUrl: './tours-activities.component.html',
@@ -31,10 +34,10 @@ export class ToursActivitiesComponent {
       private _httpsService: HttpService,
       private route: ActivatedRoute
     ) {
-      if (window.screen.width < 1024) {
-        this.isMobile = true;
-        this.showFilter = false;
-      }
+      // if (window.screen.width < 1024) {
+      //   this.isMobile = true;
+      //   this.showFilter = false;
+      // }
     }
     ngOnInit(): void {
       this.route.queryParams.subscribe((params: any) => {

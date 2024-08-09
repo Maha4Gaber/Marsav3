@@ -1,6 +1,6 @@
 
 <app-filter></app-filter>
-<app-header [background]="'#0DB1FF'"></app-header>
+<!-- <app-header [background]="'#0DB1FF'"></app-header> -->
 
 <div class="container content">
   <div class="row mb-5 mb-md-8 mt-xl-1 pb-md-1">
@@ -41,7 +41,7 @@
                         class="me-2"
                         alt="loation"
                       />
-                      <select
+                      <!-- <select
                         (change)="searchDestination($event)"
                         [(ngModel)]="place_id"
                         class="form-select border-0 border-bottom mb-3"
@@ -54,7 +54,7 @@
                         >
                           {{ dist.name }}
                         </option>
-                      </select>
+                      </select> -->
                     </div>
                   </div>
                   <!-- End Input -->
@@ -79,7 +79,7 @@
                           />
                         </span>
                       </div>
-                      <input
+                      <!-- <input
                         [(ngModel)]="start_d"
                         (change)="filterByDate($event)"
                         class="js-range-datepicker font-size-16 ml-1 shadow-none font-weight-bold form-control hero-form bg-transparent border-0 flatpickr-input p-0"
@@ -88,7 +88,7 @@
                         data-rp-type="range"
                         data-rp-date-format="M d / Y"
                         data-rp-default-date='["Jul 7 / 2020", "Aug 25 / 2020"]'
-                      />
+                      /> -->
                     </div>
                     <!-- End Datepicker -->
                   </div>
@@ -270,7 +270,7 @@
                           max_priceChoosen ? max_priceChoosen : max_price
                         }}</span>
                       </div>
-                      <mat-slider
+                      <!-- <mat-slider
                         class="w-100"
                         [min]="min_price"
                         [max]="max_price"
@@ -284,7 +284,7 @@
                           (change)="setMaxPrice($event)"
                           matSliderEndThumb
                         />
-                      </mat-slider>
+                      </mat-slider> -->
                     </div>
                   </div>
                 </div>
@@ -552,9 +552,9 @@
                   class="col-lg-12 col-sm-12 col-md-12 mb-md-4 pb-1"
                   *ngFor="let item of rows?.trips?.data"
                 >
-                  <app-activity-card-list
+                  <!-- <app-activity-card-list
                     [item]="item"
-                  ></app-activity-card-list>
+                  ></app-activity-card-list> -->
                 </div>
               </div>
             </div>
@@ -563,7 +563,7 @@
                 class="col-12 col-xl-4 col-lg-6 col-md-6"
                 *ngFor="let item of rows?.trips?.data"
               >
-                <app-activity-card [item]="item"></app-activity-card>
+                <!-- <app-activity-card [item]="item"></app-activity-card> -->
               </div>
             </div>
           </div>
