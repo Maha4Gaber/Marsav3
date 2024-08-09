@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 import { AuthService } from '../services/auth.service';
-
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,18 +10,22 @@ import { AuthService } from '../services/auth.service';
 })
 export class AppComponent {
   title = 'marsa-project';
+
   constructor(
     private langServ: LanguageService,
-    private authService: AuthService
+    private authService: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
-    const lang = localStorage.getItem('lang');
-    if (lang) {
-      this.langServ.setCurrentLang(lang, true);
-    } else {
-      this.langServ.setCurrentLang('en', true);
+    if (isPlatformBrowser(this.platformId)) {
+      const lang = localStorage.getItem('lang');
+      if (lang) {
+        this.langServ.setCurrentLang(lang, true);
+      } else {
+        this.langServ.setCurrentLang('en', true);
+      }
+      this.authService.autoAuth();
     }
-    this.authService.autoAuth();
   }
 }
