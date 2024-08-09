@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PagesRoutingModule } from './Pages-routing.module';
+// import { PagesRoutingModule } from './Pages-routing.module.ts';
 // import { SharedModule } from '../shared/shared.module';
 
 
@@ -9,12 +9,12 @@ import { PagesRoutingModule } from './Pages-routing.module';
   declarations: [
     // LayoutComponent,
    
+  
   ],
   imports: [
-    // CommonModule,
-    PagesRoutingModule,
+    CommonModule,
     // SharedModule
     
   ]
 })
-export class PagesModule { }
+export class ToursModule { }

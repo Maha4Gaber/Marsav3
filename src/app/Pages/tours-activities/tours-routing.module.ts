@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
-import { NotFoundComponent } from '../shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   // {
@@ -11,18 +9,17 @@ const routes: Routes = [
   // },
   {
     path: '',
-    component: LayoutComponent,
     children: [
       {
         path: '',
-        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        // loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
     ]
   },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+  // {
+  //   path: '**',
+  //   component: NotFoundComponent
+  // }
 ];
 
 @NgModule({

@@ -27,7 +27,7 @@ import { ApplicationComponent } from './components/@layout-pages/application/app
 import { CodeSignComponent } from './components/@layout-pages/Auth/code-sign/code-sign.component';
 import { ActivityCardComponent } from './components/cards/activity-card/activity-card.component';
 import { ActivityCardListComponent } from './components/cards/activity-card-list/activity-card-list.component';
-import { MaterialModule } from '../material/material.module';
+// import { MaterialModule } from '../material/material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
@@ -154,35 +154,35 @@ const slider = [
 
 @NgModule({
   declarations: [
-    ...layoutPages,
-    ...cardComponents,
-    ...directives,
-    ...slider,
-    NotFoundComponent,
+    // ...layoutPages,
+    // ...cardComponents,
+    // ...directives,
+    // ...slider,
+    // NotFoundComponent,
   ],
   imports: [
-    CommonModule,
-    CarouselModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    MaterialModule,
-    TranslateModule,
-    NgxMaterialTimepickerModule,
-    NgSelectModule,
-    NgxIntlTelInputModule,
+    // CommonModule,
+    // CarouselModule,
+    // FormsModule,
+    // ReactiveFormsModule,
+    // RouterModule,
+    // MaterialModule,
+    // TranslateModule,
+    // NgxMaterialTimepickerModule,
+    // NgSelectModule,
+    // NgxIntlTelInputModule,
   ],
   exports: [
-    CarouselModule,
-    NgxMaterialTimepickerModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ...layoutPages,
-    ...cardComponents,
-    ...slider,
-    NgSelectModule,
-    NgxIntlTelInputModule,
+    // CarouselModule,
+    // NgxMaterialTimepickerModule,
+    // MaterialModule,
+    // FormsModule,
+    // ReactiveFormsModule,
+    // ...layoutPages,
+    // ...cardComponents,
+    // ...slider,
+    // NgSelectModule,
+    // NgxIntlTelInputModule,
   ],
 })
 export class SharedModule {}

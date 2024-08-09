@@ -10,7 +10,7 @@ const routes: Routes = [
   // },
   {
     path: 'tour',
-    loadChildren: () => import(`./Pages/tours/tours.module`).then(m => m.ToursModule)
+    loadChildren: () => import(`./Pages/tours-activities/tours.module`).then(m => m.ToursModule)
   },
 
 
