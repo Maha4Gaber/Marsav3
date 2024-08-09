@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpService } from '../../../../core/services/http/http.service';
+import { HttpService } from '../../../../../services/http/http.service';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-destination',

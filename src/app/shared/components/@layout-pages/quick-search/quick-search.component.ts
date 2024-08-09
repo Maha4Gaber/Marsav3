@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpService } from 'src/app/core/services/http/http.service';
+import { HttpService } from '../../../../../services/http/http.service';
 
 @Component({
   selector: 'app-quick-search',

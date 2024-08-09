@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { environment } from 'src/environments/environment.prod';
+import { HttpService } from '../../../../../../services/http/http.service';
+import { environment } from '../../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-application',

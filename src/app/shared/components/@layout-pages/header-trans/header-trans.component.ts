@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-header-trans',
