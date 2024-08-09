@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ToursActivitiesComponent } from './tours-activities/tours-activities.component';
 
 const routes: Routes = [
   // {
@@ -9,6 +10,7 @@ const routes: Routes = [
   // },
   {
     path: '',
+    component: ToursActivitiesComponent,
     children: [
       {
         path: '',
@@ -18,7 +20,6 @@ const routes: Routes = [
   },
   // {
   //   path: '**',
-  //   component: NotFoundComponent
   // }
 ];
 

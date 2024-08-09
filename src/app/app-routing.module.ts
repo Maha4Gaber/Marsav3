@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ToursActivitiesComponent } from './Pages/tours-activities/tours-activities.component';
+import { ToursActivitiesComponent } from './Pages/tours-activities/tours-activities/tours-activities.component';
 
 
 const routes: Routes = [
