@@ -13,7 +13,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
   imports: [
     CommonModule
   ],
-   providers: [
+  providers: [
     {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthInterceptor,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ToursActivitiesComponent } from './tours-activities/tours-activities.component';
+import { LayoutComponent } from './layout/layout.component';
+import { NotFoundComponent } from '../shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   // {
@@ -10,21 +11,22 @@ const routes: Routes = [
   // },
   {
     path: '',
-    component: ToursActivitiesComponent,
+    component: LayoutComponent,
     children: [
       {
         path: '',
-        // loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
     ]
   },
-  // {
-  //   path: '**',
-  // }
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PagesRoutingModule { }
+export class WebSiteRoutingModule { }

@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { HttpService } from 'src/app/core/services/http/http.service';
-import { environment } from 'src/environments/environment.prod';
+import { HttpService } from '../../core/services/http/http.service';
+import { environment } from '../../../environments/environment.prod';
 import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
@@ -193,7 +193,7 @@ export class AuthService {
 
           // window.location.reload();
         },
-        error: (err) => {
+        error: (err:any) => {
           this.$changePassError.next(true);
         },
       });

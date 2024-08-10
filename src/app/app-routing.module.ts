@@ -1,32 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ToursActivitiesComponent } from './Pages/tours-activities/tours-activities/tours-activities.component';
-
 
 const routes: Routes = [
-  // {
-  //   path: ':lang',
-  //   // loadChildren: () => import(`./Pages/home/home.module`).then(m => m.HomeModule)
-  // },
   {
-    path: 'tour',
-    loadChildren: () => import(`./Pages/tours-activities/tours.module`).then(m => m.ToursModule)
+    path: ':lang',
+    loadChildren: () => import(`./web-site/web-site.module`).then(m => m.WebSiteModule)
   },
-
-
-
-
-
-  
-  // {
-  //   path: '**',
-  //   co
-  // }
+  // {path:'', 
+  // loadChildren: () => import(`./pages/pages.module`).then(m => m.PagesModule)
+  // },
+  // {path: '**', redirectTo: '/404/not-found'},
+  {
+    path: '',
+    redirectTo: localStorage.getItem('lang')!
+      ? localStorage.getItem('lang')!
+      : 'en',
+    pathMatch: 'full',
+  },
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', initialNavigation: 'enabledBlocking' }),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

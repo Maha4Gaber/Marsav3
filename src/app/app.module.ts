@@ -1,30 +1,36 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { NgModule,NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToursActivitiesComponent } from './Pages//tours-activities/tours-activities/tours-activities.component';
-
-
-import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { SEOService } from './shared/services/seo.service';
+import { provideClientHydration } from '@angular/platform-browser';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ToursActivitiesComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxMaterialTimepickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    CoreModule,
     BrowserAnimationsModule,
+    CarouselModule,
+    NgxMaterialTimepickerModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -33,14 +39,20 @@ import { HttpClient } from '@angular/common/http';
         deps: [HttpClient],
       },
     }),
+    NgxSpinnerModule.forRoot({ type: 'square-jelly-box' }),
+    BsDropdownModule.forRoot(),
+    LeafletModule,
+    MatDialogModule,
   ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [SEOService, provideClientHydration()],
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ]
 })
-export class AppModule { }
+export class AppModule {}
+
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, ' ../assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
