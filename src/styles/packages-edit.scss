@@ -155,6 +155,7 @@
       display: block;
       align-self: flex-end;
       text-transform: uppercase;
+
     }
   }
 
@@ -162,12 +163,11 @@
     width: 123px;
     color: #0072bc;
     font-family: Poppins;
-    font-size: 27px;
+    font-size: 25px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-
-    margin-bottom: -25px;
+    margin-bottom:-25px;
     margin-top: 8px;
 
     &:nth-of-type(2) {

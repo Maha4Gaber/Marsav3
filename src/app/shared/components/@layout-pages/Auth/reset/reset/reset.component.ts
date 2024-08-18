@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../../../services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { CodeService } from '../../services/code.service';
 
 @Component({

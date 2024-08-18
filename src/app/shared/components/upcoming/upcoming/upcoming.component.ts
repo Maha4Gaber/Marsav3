@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpService } from '../../../../../services/http/http.service';
-import { environment } from '../../../../../environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-upcoming',

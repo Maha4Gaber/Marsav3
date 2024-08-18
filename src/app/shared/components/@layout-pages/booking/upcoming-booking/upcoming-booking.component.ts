@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpService } from '../../../../../../services/http/http.service';
-import { environment } from '../../../../../../environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-upcoming-booking',
@@ -46,6 +46,13 @@ export class UpcomingBookingComponent {
   ngOnInit() {
     this.httpService.get(environment.marsa, 'profile').subscribe((res: any) => {
       this.tabs = res?.triptypes;
+      // console.log(this.tabs);
+      this.tabs[0].category='Activities'
+      this.tabs[1].category='Liveaboard'
+      this.tabs[2].category='Private Boats'
+
+      // console.log(this.tabs);
+      
       this.upcoming = res?.userDashboard?.upcomming?.data;
       console.log(this.upcoming);
       this.allUpcoming = this.upcoming;

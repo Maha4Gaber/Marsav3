@@ -1,13 +1,13 @@
 <div
-  class="search-quick overflow-y-scroll-hidden"
+  class="search-quick overflow-y-scroll-hidden mb-5"
   [class.changeStyle]="changeStyle"
 >
   <ul
-    class="nav tab-nav-rounded flex-nowrap pb-2 overflow-x-auto overflow-y-hidden pb-md-4 tab-nav align-items-center justify-content-between"
-    role="tablist"
-    #listmobile
+  class="nav tab-nav-rounded flex-nowrap pb-2 overflow-x-auto overflow-y-hidden pb-md-4 tab-nav align-items-center justify-content-between"
+  role="tablist"
+  #listmobile
   >
-    <li #tours (click)="showSearchForm('tour')" class="nav-item">
+    <li #tours (click)="showSearchForm('tour')"  class="nav-item">
       <a
         [ngClass]="{ active: showSearch == 'tour' }"
         class="nav-link font-weight-medium pl-md-5 pl-3"
@@ -308,6 +308,13 @@
       </a>
     </li>
   </ul>
+
+
+
+
+
+
+
   <!-- End Nav Classic -->
   <div class="tab-content hero-tab-pane">
     <div
@@ -409,8 +416,8 @@
                           </span>
                         </div>
                         <span
-                          style="padding-left: 1rem; font-weight: 700"
-                          class="text-black font-size-16"
+                          style="padding-left: 1rem; color:#3b444f"
+                          class=" font-size-16"
                           >{{ adultsNumber }} Adults -
                           {{ childrenNumber }} Child-{{
                             infantNumber
@@ -944,8 +951,8 @@
                           </span>
                         </div>
                         <span
-                          style="padding-left: 1rem; font-weight: 700"
-                          class="text-black font-size-16"
+                          style="padding-left: 1rem; font-weight: 700; color:#3b444f"
+                          class=" font-size-16"
                           >{{ adultsNumber }} Adults -
                           {{ childrenNumber }} Child-{{
                             infantNumber
@@ -1121,12 +1128,12 @@
     >
       <!-- Search Jobs Form -->
       <div class="card border-0 tab-shadow px-4">
-        <div class="card-body">
+        <div class="card-body ">
           <form class="js-validate">
             <div>
               <div class="destination-content">
-                <div class="nav-select option w-100">
-                  <div class="mb-lg-0 nav-select-item">
+                <div class="nav-select option w-100 row">
+                  <div class="mb-lg-0 nav-select-item col" style="padding-right:0px ; padding-left: 0px;">
                     <span>Destination</span>
                     <!-- Select -->
                     <div
@@ -1140,7 +1147,7 @@
                       <select
                         class="form-select border-bottom border-color-1 pb-3"
                         aria-label="Select example"
-                        style="font-size: 14px"
+                        style="font-size: 14px;padding-left: 10px;"
                       >
                         <option>Where are you going?</option>
                         <option
@@ -1154,7 +1161,7 @@
 
                     <!-- End Select -->
                   </div>
-                  <div class="mb-lg-0 nav-select-item">
+                  <div class="mb-lg-0 nav-select-item col" style="padding-right:0px ; padding-left: 0px;">
                     <span>Pick up Location</span>
                     <!-- Select -->
                     <div
@@ -1182,7 +1189,7 @@
 
                     <!-- End Select -->
                   </div>
-                  <div class="mb-lg-0 nav-select-item">
+                  <div class="mb-lg-0 nav-select-item col" style="padding-right:0px ; padding-left: 0px;">
                     <span>Pick Off Location</span>
                     <!-- Select -->
                     <div
@@ -1210,7 +1217,7 @@
 
                     <!-- End Select -->
                   </div>
-                  <div class="mb-4 mb-lg-0 nav-select-item">
+                  <div class="mb-4 mb-lg-0 nav-select-item col" style="padding-right:0px ; padding-left: 0px;">
                     <!-- Input -->
                     <span
                       class="d-block text-gray-1 text-left font-weight-normal mb-0"
@@ -1243,7 +1250,7 @@
                     <!-- End Input -->
                   </div>
 
-                  <div class="mb-4 mb-lg-0 nav-select-item">
+                  <div class="mb-4 mb-lg-0 nav-select-item col" >
                     <div class="border-bottom border-color-1 mb-2">
                       <!-- Input -->
                       <span
@@ -1265,8 +1272,8 @@
                           </span>
                         </div>
                         <span
-                          style="padding-left: 1rem; font-weight: 700"
-                          class="text-black font-size-16"
+                          style="padding-left: 1rem; font-weight: 700 ;  color:#3b444f"
+                          class=" font-size-16"
                           >{{ adultsNumber }} Adults -
                           {{ childrenNumber }} Child-{{
                             infantNumber
@@ -1408,7 +1415,7 @@
                       <!-- End Input -->
                     </div>
                   </div>
-                  <div class="btn-container">
+                  <div  style="padding-right:0px ; padding-left: 0px;" >
                     <button
                       type="submit"
                       class="btn border-radius-3"
@@ -1433,4 +1440,7 @@
       <!-- End Search Jobs Form -->
     </div>
   </div>
+
+
+
 </div>

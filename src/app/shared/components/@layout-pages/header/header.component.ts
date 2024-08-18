@@ -1,10 +1,10 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpService } from '../../../../../services/http/http.service';
-import { AuthService } from '../../../../shared/services/auth.service';
-import { HeaderService } from '../../../../shared/services/header.service';
-import { LanguageService } from '../../../../shared/services/language.service';
-import { environment } from '../../../../../environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { HeaderService } from 'src/app/shared/services/header.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-header',

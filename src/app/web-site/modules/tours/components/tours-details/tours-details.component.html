@@ -1,5 +1,4 @@
 <app-header [background]="'#0DB1FF'"></app-header>
-
 <div class="container details-page">
   <div>
     <div>
@@ -44,15 +43,14 @@
                 />
                 <a class="location">{{ activityData?.Place }}</a>
                 <a
-                  (click)="showMap()"
+                (click)="scrollTo('showmap')"
+                [class.active]="activeTabId === 'showmap'"
                   class="ml-1 d-block d-md-inline location text-primary"
                 >
                   - View on map</a
                 >
               </div>
-              <div *ngIf="showMapFrame">
-                <div [innerHTML]="googleIframe"></div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -196,27 +194,43 @@
             </li>
           </ul>
         </div>
-        <div class="col mb-5 p-0">
+        <div class="col mb-5">
           <div class="image">
-            <owl-carousel-o [options]="coverAndImagesOptions" class="trending">
+
+            <p-galleria 
+              [value]="coverAndImages" 
+              [responsiveOptions]="responsiveOptions" 
+              [containerStyle]="{ 'width': '100%' }" 
+              [numVisible]="6">
+                  <ng-template pTemplate="item" let-item>
+                    <img [src]="item?.value" style="width: 100%; height:  480px;" />
+                  </ng-template>
+                  <ng-template pTemplate="thumbnail" let-item>
+                    <div class="grid grid-nogutter justify-content-center">
+                      <img [src]="item?.value" />
+                    </div>
+                  </ng-template>
+                  <!--- style="min-height: 100%; min-width: 100%; height: 437px;" -->
+          </p-galleria>
+            <!-- <owl-carousel-o [options]="coverAndImagesOptions" class="trending">
               <ng-container *ngFor="let imgs of coverAndImages">
                 <ng-template carouselSlide>
                   <div class="position-relative mt-4">
                     <img
                       [src]="imgs?.value"
                       [alt]="activityData?.Name"
-                      loading="lazy"
                       style="height: 480px; min-width: 720px"
+                      loading="lazy"
                       id="mobile-img"
                       class="cover-image"
                     />
                   </div>
                 </ng-template>
               </ng-container>
-            </owl-carousel-o>
+            </owl-carousel-o> -->
             <div
               class="flex-horizontal-center position-absolute video-gallery"
-              style="bottom: 30%; right: 25px; z-index: 1"
+              style="bottom: 18%; right: 25px; z-index: 1"
             >
               <!-- Video -->
               <a
@@ -230,7 +244,6 @@
                   alt="video"
                   title="Video"
                 />
-                <!-- <span class=" d-md-inline">Video</span> -->
               </a>
               <!-- End Video -->
               <a
@@ -240,13 +253,12 @@
                 <img
                   src="assets/custom/Activity/gallary.svg"
                   class="d-md-inline w-100"
-                  alt="video"
+                  alt="Gallery"
                   title="Gallery"
                 />
-                <!-- <span class=" d-md-inline">Gallery</span> -->
               </a>
             </div>
-            <owl-carousel-o [options]="imagesOptions" id="mobile-img-removed">
+            <!-- <owl-carousel-o [options]="imagesOptions" id="mobile-img-removed">
               <ng-container
                 *ngFor="
                   let img of images;
@@ -264,12 +276,12 @@
                       loading="lazy"
                       class="px-1"
                       [ngStyle]="{ 'max-width.%': isSingleImage ? 20 : 100 }"
-                      style="cursor: pointer; width: 100%; height: 135px"
+                      style="cursor: pointer; width: 100%; height: auto"
                     />
                   </div>
                 </ng-template>
               </ng-container>
-            </owl-carousel-o>
+            </owl-carousel-o> -->
           </div>
         </div>
 
@@ -277,77 +289,33 @@
         <div class="container p-0" style="max-width: 100%">
           <!-- Tabs -->
           <div class="sticky-nav">
-            <ul
-              class="list-unstyled d-flex justify-content-around navs tours sticky-nav"
-              role="tablist"
-            >
-              <li
-                class="nav-item"
-                role="presentation"
-                [class.active]="activeTabId === 'description'"
-              >
+            <ul class="list-unstyled d-flex justify-content-around navs tours sticky-nav" role="tablist">
+              <li class="nav-item" role="presentation"   [class.active]="activeTabId === 'description'">
                 <button class="nav-link" (click)="scrollTo('description')">
                   Description
                 </button>
               </li>
-              <li
-                class="nav-item"
-                role="presentation"
-                [class.active]="activeTabId === 'experience'"
-              >
-                <button class="nav-link" (click)="scrollTo('experience')">
-                  Experience
-                </button>
+              <li class="nav-item" role="presentation" [class.active]="activeTabId === 'experience'" >
+                <button class="nav-link" (click)="scrollTo('experience')">Experience</button>
               </li>
-              <!-- Add more tabs for other sections -->
-              <li
-                class="nav-item"
-                role="presentation"
-                [class.active]="activeTabId === 'availableOptions'"
-              >
-                <button class="nav-link" (click)="scrollTo('availableOptions')">
-                  Available Options
-                </button>
+              <li class="nav-item" role="presentation"  [class.active]="activeTabId === 'availableOptions'">
+                <button class="nav-link" (click)="scrollTo('availableOptions')">Available Options</button>
               </li>
-              <li
-                class="nav-item"
-                role="presentation"
-                [class.active]="activeTabId === 'importantInformation'"
-              >
-                <button
-                  class="nav-link"
-                  (click)="scrollTo('importantInformation')"
-                >
-                  Important Information
-                </button>
+              <li class="nav-item" role="presentation"  [class.active]="activeTabId === 'importantInformation'">
+                <button class="nav-link" (click)="scrollTo('importantInformation')">Important Information</button>
               </li>
-              <li
-                class="nav-item"
-                role="presentation"
-                [class.active]="activeTabId === 'boat'"
-              >
-                <button class="nav-link" (click)="scrollTo('boat')">
-                  Boat
-                </button>
+              <li class="nav-item" role="presentation" [class.active]="activeTabId === 'boat'">
+                <button class="nav-link" (click)="scrollTo('boat')">Boat</button>
               </li>
-              <li
-                class="nav-item"
-                role="presentation"
-                [class.active]="activeTabId === 'faq'"
-              >
+              <li class="nav-item" role="presentation" [class.active]=" activeTabId === 'faq'">
                 <button class="nav-link" (click)="scrollTo('faq')">FAQ</button>
               </li>
-              <li
-                class="nav-item"
-                role="presentation"
-                [class.active]="activeTabId === 'review'"
-              >
-                <button class="nav-link" (click)="scrollTo('review')">
-                  Review
-                </button>
+              <li class="nav-item" role="presentation" [class.active]=" activeTabId === 'review'">
+                <button class="nav-link" (click)="scrollTo('review')">Review</button>
               </li>
             </ul>
           </div>
+
 
           <!-- Content Sections -->
           <div id="description" class="tab-pane">
@@ -542,11 +510,14 @@
           <div id="importantInformation" class="tab-pane">
             <h5>Important Information</h5>
             <div [innerHTML]="activityData?.ImportantInformation"></div>
-            <h5 class="mt-3">Map</h5>
-            <div class="Map" [innerHTML]="availableOptionMap"></div>
+            <h5 class="mt-3" id="showmap">Map</h5>
+            <div class="map">
+              <div [innerHTML]="googleIframe"></div>
+            </div>
+
           </div>
           <!-- <div id="map" class="tab-pane">
-                       
+
                     </div> -->
           <div id="boat" class="tab-pane">
             <h6>Available Boats</h6>
@@ -650,46 +621,71 @@
             </div>
             <div *ngIf="happyGustImages.length > 0">
               <h6>Traveler Photos</h6>
-              <div class="row">
-                <div class="col-md-6">
-                  <img
-                    class="w-100"
-                    [src]="happyGustImages[0]"
-                    alt="tour"
+              
+              <div class="row g-5">
+                <div class="col-md-5">
+                  <p-image 
+                    class="w-100 p-img h-100 "
+                        [src]="happyGustImages[0]"
+                        alt="tour"
+                        loading="lazy"
+                      width="100%"
+                      height="265"
                     loading="lazy"
-                  />
+                      [preview]="true" />
+                  <!-- <img
+                    class="w-100 h-100"
+                    [src]="happyGustImages[0]"
+                  /> -->
                 </div>
-                <div class="col-md-6">
-                  <div class="row">
+                <div class="col-md-7">
+                  <div class="row g-3">
                     <!-- Display first three images -->
                     <div
-                      class="col-md-6 position-relative pt-1"
+                      class="col-md-6 position-relative "
                       *ngFor="
                         let image of remainingImages.slice(0, 3);
                         let i = index
                       "
                     >
-                      <img
-                        class="w-100 h-100"
+                    <p-image 
+                    class="w-100 "
                         [src]="image"
                         alt="tour"
                         loading="lazy"
-                      />
+                      width="100%"
+                      height="125px" 
+                      [preview]="true" />
+                      <!-- <img
+                        class="w-100 "
+                        [src]="image"
+                        alt="tour"
+                        loading="lazy"
+                        style="height: 125px;"
+                      /> -->
                       <!-- Overlay -->
                       <div class="overlay"></div>
                     </div>
-
+  
                     <!-- Last Image -->
                     <div
                       class="col-md-6 position-relative pt-1"
                       *ngIf="remainingImages.length > 3"
                     >
-                      <img
+                    <p-image 
+                    class="w-100 remainingImages"
+                        [src]="remainingImages[3]"
+                        alt="tour"
+                        loading="lazy"
+                      width="100%"
+                      height="125px" 
+                      [preview]="true" />
+                      <!-- <img
                         class="w-100 remainingImages"
                         [src]="remainingImages[3]"
                         alt="tour"
                         loading="lazy"
-                      />
+                      /> -->
                       <!-- Overlay and button -->
                       <div class="see-more-container">
                         <div class="position-relative">
@@ -1001,10 +997,11 @@
           >
             <li class="list-group-item px-1">
               <a
-                href="#"
-                class="height-45 width-45 border rounded border-width-2 flex-content-center"
+              #btn
+                (click)="addtoFavorits(btn,$event)"
+                class="height-35 width-45 border rounded border-width-2 flex-content-center"
               >
-                <i class="fa-regular fa-heart font-size-18 text-dark"></i>
+                <i class="fa-regular fa-heart font-size-18 "></i>
               </a>
             </li>
             <li class="list-group-item px-1">
@@ -1032,7 +1029,7 @@
             </li>
           </ul>
           <span
-            class="mt-5 d-inline-block p-3"
+            class="mt-5 d-inline-block py-1 px-3"
             [ngClass]="{
               'border collective': selectedOption === 'Collective',
               'private collective': selectedOption !== 'Collective'
@@ -1053,10 +1050,10 @@
           >
 
           <div class="border border-color-7 rounded mb-5">
-            <div class="p-4" #checkAvailabilityButton>
+            <div class="p-1 px-4" #checkAvailabilityButton>
               <div class="priceTitle d-flex justify-content-between">
                 <span
-                  class="d-block text-gray-1 font-weight-normal mb-2 text-left"
+                  class="d-block text-gray-1 font-weight-normal  text-left"
                   >Price</span
                 >
                 <p style="font-weight: 700">
@@ -1120,7 +1117,7 @@
                   >
                 </p>
               </div>
-              <div class="mb-4">
+              <div class="mb-1">
                 <div class="border-bottom border-width-2 border-color-1 pb-1">
                   <span class="d-block">Date</span>
                   <mat-form-field class="w-100">
@@ -1177,14 +1174,14 @@
                 </div>
               </div>
               <span
-                class="d-block text-gray-1 font-weight-normal mb-2 text-left"
+                class="d-block text-gray-1 font-weight-normal mb-1 text-left"
                 *ngIf="selectedOption === 'Collective'"
                 >Adults</span
               >
               <div class="mb-4" *ngIf="selectedOption === 'Collective'">
                 <div class="border-bottom border-width-2 border-color-1 pb-1">
                   <div
-                    class="js-quantity flex-center-between mb-1 text-dark fw-bold"
+                    class="js-quantity flex-center-between  text-dark fw-bold"
                   >
                     <span class="d-block"
                       >Age
@@ -1221,11 +1218,11 @@
                 </div>
               </div>
               <span
-                class="d-block text-gray-1 font-weight-normal mb-2 text-left"
+                class="d-block text-gray-1 font-weight-normal mb-1 text-left"
                 *ngIf="selectedOption === 'Collective'"
                 >Children</span
               >
-              <div class="mb-4" *ngIf="selectedOption === 'Collective'">
+              <div class="mb-1" *ngIf="selectedOption === 'Collective'">
                 <div class="border-bottom border-width-2 border-color-1 pb-1">
                   <div
                     class="js-quantity flex-center-between mb-1 text-dark fw-bold"
@@ -1888,12 +1885,12 @@
     style="background: white; padding: 5%"
   >
     <div class="priceTitle d-flex justify-content-between">
-      <!-- <span class="d-block text-gray-1 font-weight-normal mb-2 text-left"
+      <span class="d-block text-gray-1 font-weight-normal font-size-16  text-left"
         >Price</span
-      > -->
-      <p style="font-weight: 700">
+      >
+      <p style="font-weight: 500">
         <span
-          class="font-size-18 fw-bold text-dark"
+          class="font-size-16 fw-bold text-dark"
           [style.text-decoration]="
             (selectedOption === 'Collective' &&
               getMinAdultPrice()?.PriceColective.AdultDiscount > 0) ||
@@ -1922,14 +1919,14 @@
           $</span
         >
         <span
-          class="mx-2 font-size-18 fw-bold text-dark"
+          class="mx-1 font-size-16 fw-bold text-dark"
           *ngIf="
             (selectedOption === 'Collective' &&
               getMinAdultPrice()?.PriceColective.AdultDiscount > 0) ||
             (selectedOption === 'Private' &&
               getMinAdultPrice()?.PricePrivte.AdultDiscount > 0)
           "
-          style="font-weight: 700"
+          style="font-weight: 500"
           >{{
             selectedOption === "Collective"
               ? getRoundedRate(
@@ -1950,10 +1947,11 @@
       </p>
     </div>
     <a
-      class="btn check text-white d-flex align-items-center justify-content-center height-60 w-100 mb-xl-0 mb-lg-1 fw-bold"
+      class="btn check text-white d-flex align-items-center justify-content-center height-40 w-100 mb-xl-0 mb-lg-1 fw-bold"
       (click)="scrollToCheckAvailabilityButton()"
     >
       Check availability
     </a>
   </div>
 </div>
+

@@ -2,14 +2,14 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { DatePipe, Location } from '@angular/common';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from '../../../../../../environments/environment.prod';
-import { HttpService } from '../../../../../core/services/http/http.service';
+import { environment } from 'src/environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../../../shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MapModalComponent } from '../../../../../shared/components/@layout-pages/map-modal/map-modal.component';
+import { MapModalComponent } from 'src/app/shared/components/@layout-pages/map-modal/map-modal.component';
 import Swal from 'sweetalert2';
 import { Code } from '../../context/code.interface';
 import { Observable, map, startWith } from 'rxjs';
@@ -42,7 +42,9 @@ export class PaymentComponent {
   activeTab: string = 'pills-one-example2';
   filteredNationalities: Observable<Code[]> | undefined;
   showServices: boolean = true;
-
+  coupon=0;
+  Coupons:any;
+  Total:any;
   nationalities!: Code[];
   // map
   @ViewChild('mapModalDeatails') mapModalDeatails: ElementRef | undefined;
@@ -76,6 +78,7 @@ export class PaymentComponent {
       const trip_id = params['tripId'];
       this.tripId = trip_id;
       this.avilableOptions = parsedRes;
+      this.Total=this.avilableOptions?.TotlaPrice;
       this.booking_date = params['booking_date'];
       this.class = params['class'];
       this.avilable_option_id = params['avilable_option_id'];
@@ -102,7 +105,18 @@ export class PaymentComponent {
 
     this.getNationality();
   }
-
+  applycoupon(){
+    this._httpService
+      .get(environment.marsa, `Coupon`)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.Coupons=res.coupon.filter((item:any) =>  item.code == this.coupon)
+        this.Total=this.Total - this.Coupons[0].amount
+    console.log(this.Coupons);
+  });
+    console.log(this.coupon);
+    // Coupon
+  }
   toggleTab(tabId: string, paymentMethod: string) {
     this.activeTab = tabId;
     this.payment_method = paymentMethod;
@@ -252,6 +266,7 @@ export class PaymentComponent {
         infant: this.infant,
         booking_date: formattedDateString,
         payment_method: this.payment_method ? this.payment_method : 'cash',
+        coupon_id:this.Coupons[0].id,
         ...this.customerForm.value,
         phone: phoneNumber.replace('+', ''),
         lng: this.longitudeValue ? this.longitudeValue.toString() : '',
@@ -276,10 +291,13 @@ export class PaymentComponent {
       Object.keys(model).forEach(
         (k) => (model[k] == '' || model[k]?.length == 0) && delete model[k]
       );
+      console.log(model);
+      
       this._httpService
         .post(environment.marsa, 'Activtes/book', model)
         .subscribe({
           next: (res: any) => {
+            console.log(res);
             const queryParams = {
               res: JSON.stringify(res),
               trip_id: this.tripId,

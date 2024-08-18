@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '../../../../../core/services/http/http.service';
-import { environment } from '../../../../../../environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-tours',

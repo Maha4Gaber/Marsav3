@@ -1,8 +1,8 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpService } from '../../../../../services/http/http.service';
-import { environment } from '../../../../../environments/environment';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-trending',
@@ -14,14 +14,16 @@ export class TrendingComponent {
   @Input() placeId: any;
   @Input() applyMargin: boolean = true;
   route = '/' + this.translate.currentLang + '/tours/details/';
+  responsiveOptions: any[] | undefined;
+
   customOptions: OwlOptions = {
-    loop: false,
+    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
-    autoplay: false,
-    margin: 40,
+    autoplay: true,
+    margin: 49,
     navSpeed: 700,
     // navText: [
     //   "<i class='fa fa-angle-left'></i>",
@@ -62,6 +64,25 @@ export class TrendingComponent {
     if (window.screen.width < 1024) {
       this.isMobile = true;
     }
+
+
+    this.responsiveOptions = [
+      {
+        breakpoint: '1024px',
+        numVisible: 3,
+        numScroll: 3
+      },
+      {
+        breakpoint: '768px',
+        numVisible: 2,
+        numScroll: 2
+      },
+      {
+        breakpoint: '560px',
+        numVisible: 1,
+        numScroll: 1
+      }
+    ];
   }
 
   ngOnChanges() {

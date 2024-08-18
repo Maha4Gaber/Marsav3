@@ -1,5 +1,6 @@
 import {
   Component,
+  HostListener,
   ElementRef,
   Input,
   QueryList,
@@ -8,7 +9,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpService } from '../../../../../services/http/http.service';
+import { HttpService } from 'src/app/core/services/http/http.service';
 
 @Component({
   selector: 'app-quick-search',
@@ -16,6 +17,8 @@ import { HttpService } from '../../../../../services/http/http.service';
   styleUrls: ['./quick-search.component.scss'],
 })
 export class QuickSearchComponent {
+
+
   showSearch: string = 'tour';
   @Input() changeStyle: boolean = false;
   destination: any = [];
@@ -41,6 +44,9 @@ export class QuickSearchComponent {
     this.scrollToActive(value);
   }
 
+
+
+
   scrollToActive(value: any) {
     let activeElement: any;
     if (value == 'tour') {
@@ -52,7 +58,6 @@ export class QuickSearchComponent {
     } else {
       activeElement = this.transfer!.nativeElement;
     }
-    // if (value != 'tour') {
     const containerElement = this.listmobile!.nativeElement;
     const activeElementLeft = activeElement.offsetLeft;
     const activeElementWidth = activeElement.offsetWidth;
@@ -69,6 +74,7 @@ export class QuickSearchComponent {
   }
 
   ngOnInit() {
+
     this.httpService.get('marsa', 'place').subscribe({
       next: (res: any) => {
         this.destination = res.places;

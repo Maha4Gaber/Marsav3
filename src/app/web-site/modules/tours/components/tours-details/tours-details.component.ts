@@ -1,9 +1,11 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
   TemplateRef,
   ViewChild,
+  
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,8 +35,7 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import {
   CUSTOM_DATE_FORMATS,
   CustomDateAdapter,
-} from '../../../../../shared/components/Date/custom-date-adapter';
-
+} from 'src/app/shared/components/Date/custom-date-adapter';
 @Component({
   selector: 'app-tours-details',
   templateUrl: './tours-details.component.html',
@@ -55,7 +56,7 @@ import {
     { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
   ],
 })
-export class ToursDetailsComponent {
+export class ToursDetailsComponent implements AfterViewInit {
   activityID: any;
   isMobile = false;
   activityData: any;
@@ -99,6 +100,7 @@ export class ToursDetailsComponent {
   isSingleImage: boolean = false;
   showBookingOption = false;
   hideMobileFooter = false;
+
   constructor(
     private _httpService: HttpService,
     private activatedRoute: ActivatedRoute,
@@ -117,26 +119,52 @@ export class ToursDetailsComponent {
       this.isMobile = true;
     }
   }
+  @ViewChild('myDiv') myDiv!: ElementRef;
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const fromTop = window.scrollY;
-    const tabs = this.el.nativeElement.querySelectorAll('.tab-pane');
-    tabs.forEach((tab: any) => {
-      const tabTop = tab.offsetTop;
-      const tabBottom = tabTop + tab.offsetHeight;
-      if (fromTop >= tabTop && fromTop < tabBottom) {
-        this.activeTabId = tab.id;
-      }
-    });
+  scrollToTop() {
+    this.myDiv.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+  ngAfterViewInit() {
+    // Initialize the active tab on load
+    this.setupIntersectionObserver();
   }
 
   scrollTo(tabId: string) {
+    this.activeTabId = tabId;
     const tabElement = document.getElementById(tabId);
+
     if (tabElement) {
-      tabElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      tabElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   }
+
+  private setupIntersectionObserver() {
+    const options = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.5 // element should be at least 50% visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.activeTabId = entry.target.id;
+        }
+      });
+    }, options);
+
+    const tabs = document.querySelectorAll('.tab-pane');
+    tabs.forEach(tab => {
+      observer.observe(tab);
+    });
+  }
+
+
+
+
   @HostListener('window:scroll', ['$event'])
   isScrolledIntoView() {
     if (this.checkAvailabilityButton) {
@@ -152,7 +180,33 @@ export class ToursDetailsComponent {
       }
     }
   }
+    
+    responsiveOptions: any[] | undefined;
+
+    // constructor() {}
   ngOnInit(): void {
+    this.responsiveOptions = [
+      {
+        breakpoint: '1400px',
+        numVisible: 6
+    },
+    {
+      breakpoint: '1200px',
+      numVisible: 6
+  },
+      {
+          breakpoint: '1024px',
+          numVisible: 6
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 5
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 3
+      }
+  ];
     this.activatedRoute.params.subscribe((params: any) => {
       this.activityID = params.id;
       this.loadData();
@@ -248,9 +302,11 @@ export class ToursDetailsComponent {
       .get(environment.marsa, `Activtes/details/` + activityID)
       .subscribe((res: any) => {
         this.activityData = res?.tripDetails;
+        console.log(res);
         this.googleIframe = this.sanitizer.bypassSecurityTrustHtml(
           this.activityData.PlaceOnMap
         );
+
         this.availableOptionMap = this.sanitizer.bypassSecurityTrustHtml(
           this.activityData.Map
         );
@@ -272,6 +328,8 @@ export class ToursDetailsComponent {
         this.videoBoatUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
           boat?.video
         );
+
+
 
         this.isSingleImage = this.images.length === 1;
 
@@ -300,7 +358,7 @@ export class ToursDetailsComponent {
 
   openMainImagesModal(): void {
     const dialogRef = this.dialog.open(ImageSliderModalComponent, {
-      width: '60%',
+      width: '70%',
     });
     dialogRef.componentInstance.images = this.images;
   }
@@ -311,7 +369,7 @@ export class ToursDetailsComponent {
       Object.entries(this.happyGustImages)
     ).map(([key, value]) => ({ value }));
     const dialogRef = this.dialog.open(ImageSliderModalComponent, {
-      width: '60%',
+      width: '100%',
     });
     dialogRef.componentInstance.images = happyGustImages;
   }
@@ -321,7 +379,8 @@ export class ToursDetailsComponent {
       ([key, value]) => ({ value })
     );
     const dialogRef = this.dialog.open(BoatSliderModalComponent, {
-      width: '60%',
+      width: '100%',
+
     });
     dialogRef.componentInstance.images = boatImages;
   }
@@ -329,7 +388,8 @@ export class ToursDetailsComponent {
   openVideoBoat(): void {
     this.dialog.open(this.videoBoatModal, {
       width: '100%',
-      height: '70%',
+      height: '50%',
+      
     });
   }
 
@@ -339,9 +399,9 @@ export class ToursDetailsComponent {
   getOverviewItems(overview: string): string[] {
     return overview.split('\n');
   }
-  showMap(): void {
-    this.showMapFrame = !this.showMapFrame;
-  }
+  // showMap(): void {
+  //   this.showMapFrame = !this.showMapFrame;
+  // }
 
   filterDates = (date: Date | null): boolean => {
     if (!date) {
@@ -582,7 +642,23 @@ export class ToursDetailsComponent {
         });
     }
   }
-
+  addtoFavorits(btn: any,event:any) {
+    if (btn.classList.contains('bg-primary')) {
+      
+      } else {
+        // Add to favorites/wishlist
+        this._httpService
+        .post(environment.marsa,'Wishlist/add', { trip_id: this.activityData?.id })
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+            btn.classList.add('bg-primary');
+            event.target.classList.add('text-white');
+            event.target.classList.remove('text-dark');
+          }
+        });
+    }
+  }
   customOptions: OwlOptions = {
     loop: this.relatedtrips.length > 4 ? true : false,
     mouseDrag: true,

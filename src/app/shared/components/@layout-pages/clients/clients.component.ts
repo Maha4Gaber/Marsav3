@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-clients',
@@ -36,5 +39,20 @@ export class ClientsComponent {
       }
     },
     nav: false
+  }
+  data: any;
+  constructor( private _HttpService: HttpService,
+    public translate: TranslateService)
+{}
+  ngOnInit(): void {
+    this._HttpService.get(environment.marsa, 'Aboutus').subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.data = response;
+       // this.rev=this.data.review;
+       // console.log(this.rev);
+
+      },
+    });
   }
 }

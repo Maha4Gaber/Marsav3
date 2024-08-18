@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpService } from '../../../../../services/http/http.service';
-import { PackageSliderModalComponent } from '../../../../shared/sliders/package-slider-modal/package-slider-modal.component';
-import { environment } from '../../../../../environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { PackageSliderModalComponent } from 'src/app/shared/sliders/package-slider-modal/package-slider-modal.component';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-pacakages-search',

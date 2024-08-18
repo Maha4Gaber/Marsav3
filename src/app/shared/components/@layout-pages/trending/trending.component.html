@@ -1,4 +1,4 @@
-<section [ngStyle]="{ 'margin-top.px': applyMargin ? 80 : 0 }">
+<section class="container" [ngStyle]="{ 'margin-top.px': applyMargin ? 80 : 0 }">
   <div class="title text-center" style="color: #004796" *ngIf="showHeading">
     <h3 class="mb-5">Trending</h3>
   </div>
@@ -70,11 +70,14 @@
         </button>
       </li>
     </ul>
-    <div class="my-tours-work">
-      <owl-carousel-o [options]="customOptions" class="trending">
-        <ng-template *ngFor="let trend of activeNowTrend" carouselSlide>
+    <div class="my-tours-work container">
+
+
+      <owl-carousel-o [options]="customOptions" class="trending" >
+        <ng-template *ngFor="let trend of activeNowTrend" carouselSlide >
           <div
             class="card mb-1 transition-3d-hover shadow-hover-2 tab-card h-100"
+            style="width: 300px"
           >
             <div class="position-relative mb-2">
               <a
@@ -166,5 +169,7 @@
         </ng-template>
       </owl-carousel-o>
     </div>
+
+
   </div>
 </section>

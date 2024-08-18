@@ -32,6 +32,8 @@
         title="Save for later"
         data-original-title="Save for later"
         aria-label="Save for later"
+        #btn
+        (click)="addtoFavorits(btn,$event)"
       >
         <span class="fa-regular fa-heart font-size-20"></span>
       </button>
@@ -41,11 +43,12 @@
         <h2 class="h5 text-white mb-0">
           <small class="mr-2">From</small
           ><span
+
             [style.text-decoration]="item.discount > 0 ? 'line-through' : ''"
             [style.color]="item.discount > 0 ? 'red' : ''"
             >{{ item?.PriceColectiv }} $</span
           >
-          <span class="mx-2" *ngIf="item.discount > 0"
+          <span class="mx-2"  *ngIf="item.discount > 0"
             >{{
               getRoundedRate(
                 item?.PriceColectiv -
@@ -54,7 +57,7 @@
             }}
             $</span
           >
-          per person
+         <span>per person</span>
         </h2>
       </div>
     </div>

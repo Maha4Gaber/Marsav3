@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../../../shared/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-login',

@@ -2,9 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HttpService } from '../../../../../../../services/http/http.service';
-import { AuthService } from '../../../../../services/auth.service';
-import { environment } from '../../../../../../../environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-new-password',

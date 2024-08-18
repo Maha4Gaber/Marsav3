@@ -94,6 +94,18 @@ h5 {
   padding: 10px 0;
 }
 
+.nav-item .nav-link {
+  cursor: pointer;
+}
+.nav-item .nav-link.active {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: #1d508d !important;
+  border-radius: 25px;
+  color: #fff;
+}
+
 .tab-pane {
   margin-top: 25px;
   padding-bottom: 25px;
@@ -185,7 +197,7 @@ h3.highlighting {
     display: none;
   }
   .video-gallery {
-    bottom: 5% !important;
+    // bottom: 5% !important;
   }
 }
 ::ng-deep {

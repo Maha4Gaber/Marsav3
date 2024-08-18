@@ -1,9 +1,7 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
-import { HttpService } from '../../../../../services/http/http.service';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { HttpService } from '../../../../core/services/http/http.service';
 import { Router } from '@angular/router';
-import { environment } from '../../../../../environments/environment.prod';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-destination',
@@ -11,42 +9,81 @@ import { environment } from '../../../../../environments/environment.prod';
   styleUrls: ['./destination.component.scss'],
 })
 export class DestinationComponent implements OnInit {
-  destinations: any;
-  slides: any = [];
-  newSlides: any = [];
-  isMobile = false;
+  destinations: any[] = [];
+  visibleDestinations: any[] = [];
+  currentIndex = 0;
+  screenWidth: any;
+  autoSlideInterval: any;
+
   constructor(
     private httpService: HttpService,
-    private elementRef: ElementRef
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (window.screen.width < 768) {
-      this.isMobile = true;
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth <= 1023) {
+      this.startAutoSlide();
     }
     this.httpService.get(environment.marsa, 'place').subscribe(
       (res: any) => {
-        this.destinations = res.places;
-        var size = 4;
-        this.isMobile ? (size = 1) : (size = 4);
-        for (var i = 0; i < this.destinations.length; i += size) {
-          this.slides.push(this.destinations.slice(i, i + size));
-        }
-        console.log(this.slides);
-        this.newSlides = this.removeByIndex(this.slides, 0);
-        console.log(this.newSlides);
+        this.destinations = res.places || [];
+        this.updateVisibleDestinations();
       },
-      (err) => {}
+      (err) => {
+        console.error('Error fetching destinations:', err);
+      }
     );
   }
-
-  removeByIndex(array: any[], index: any) {
-    return array.filter(function (el, i) {
-      return index !== i;
-    });
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth <= 1023) {
+      this.startAutoSlide();
+    } else {
+      this.stopAutoSlide();
+    }
+  }
+  startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, 3000); // مدة التحرك التلقائي
   }
 
-  replaceSpace(url: any) {
+  stopAutoSlide() {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+    }
+  }
+
+  replaceSpace(url: string): string {
     return url.replace(' ', '%20');
+  }
+
+  updateVisibleDestinations(): void {
+    this.visibleDestinations = this.destinations.slice(this.currentIndex, this.currentIndex + 4);
+  }
+
+  prevSlide(): void {
+    if (this.currentIndex > 0) {
+      this.currentIndex -= 1;
+    } else {
+      this.currentIndex = this.destinations.length - 4;
+    }
+    this.updateVisibleDestinations();
+  }
+
+  nextSlide(): void {
+    if (this.currentIndex < this.destinations.length - 4) {
+      this.currentIndex += 1;
+    } else {
+      this.currentIndex = 0;
+    }
+    this.updateVisibleDestinations();
+  }
+
+  logId(id: any): void {
+    localStorage.setItem('destinationId', id);
+    console.log('Clicked Destination ID:', id);
   }
 }

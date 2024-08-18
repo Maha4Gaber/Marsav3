@@ -1,25 +1,25 @@
-<div class="modal-header">
+<div class="modal-header  Cabin">
     <h4 class="modal-title">Cabin Information
     </h4>
     <button type="button" class="close" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
+<div class="modal-body Cabin">
     <div class="row">
 
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <div class="image-slider">
-                <owl-carousel-o [options]="imagesOptions" class="my-tours">
-                    <ng-container *ngFor="let img of images">
-                        <ng-template carouselSlide>
+                <owl-carousel-o [options]="imagesOptions" class="my-tours w-100">
+                    <ng-container *ngFor="let img of images" class="w-100">
+                        <ng-template carouselSlide class="w-100">
                             <img [src]="img" alt="item" loading="lazy" class="pe-3" />
                         </ng-template>
                     </ng-container>
                 </owl-carousel-o>
             </div>
         </div>
-        <div class="col-6 p-0">
+        <div class="col-lg-6 col-12 ">
             <h4 class="my-3 p-0 mx-0">{{data?.accommodation_title}}</h4>
             <h5 class="p-0">{{data?.description}}</h5>
             <p class="my-3 text-dark" *ngIf="data?.boatname != null">Boat Name : {{data?.boatname}}</p>

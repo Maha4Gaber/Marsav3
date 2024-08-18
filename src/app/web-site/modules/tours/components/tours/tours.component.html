@@ -143,7 +143,7 @@
                                                     <span class="col-9">
                                                         <span class="heading">Star Ratings</span>
                                                     </span>
-            
+
                                                 </span>
                                             </button>
                                         </h3>
@@ -478,17 +478,19 @@
         </h3>
         <div class="d-flex align-items-center gap-3">
           <div
-            class="list-view"
+            class="list-view "
             (click)="activeView = 'list'"
             [class.active]="activeView == 'list'"
           >
+          <!-- d-none d-lg-block d-xl-block -->
             <i class="fa fa-list"></i>
           </div>
           <div
-            class="grid-view"
+            class="grid-view "
             (click)="activeView = 'grid'"
             [class.active]="activeView == 'grid'"
           >
+          <!-- d-none d-lg-block d-xl-block -->
             <i class="fa fa-th"></i>
           </div>
         </div>
@@ -497,10 +499,12 @@
 
       <div>
         <ul
-          class="nav nav-pills mb-3 d-flex justify-content-between flex-nowrap border border-radius-3 m-auto tab-nav align-items-center py-2 px-0"
+          class="nav nav-pills mb-3 d-flex justify-content-between flex-nowrap border
+
+           border-radius-3 m-auto tab-nav align-items-center py-2 px-0"
           id="pills-tab"
           role="tablist"
-          style="margin-left: 30%"
+          style="padding-left: 2px !important;"
         >
           <li
             class="nav-item d-flex align-items-center flex-shrink-0 flex-xl-shrink-1"
@@ -537,6 +541,21 @@
             </button>
           </li>
         </ul>
+        <select name=""
+        class=" form-select-fill-pill form-select form-select-lg mb-3 " aria-label="form-select-lg example"
+        #option id="" (change)="searchByType({ target: { value: option.value } })">
+          <option value="null"
+          selected
+          >
+          All
+          </option>
+          <option value="item.id"
+          *ngFor="let item of types"
+
+          >
+          {{ item?.type }}
+          </option>
+        </select>
         <div class="tab-content">
           <div
             class="tab-pane fade active show"
@@ -556,7 +575,7 @@
                 </div>
               </div>
             </div>
-            <div class="row g-4 p-4" *ngIf="activeView == 'grid'">
+            <div class="row g-4 p-4 " *ngIf="activeView == 'grid'">
               <div
                 class="col-12 col-xl-4 col-lg-6 col-md-6"
                 *ngFor="let item of rows?.trips?.data"

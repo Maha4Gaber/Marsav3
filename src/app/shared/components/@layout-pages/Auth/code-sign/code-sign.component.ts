@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../../../../services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { CodeService } from '../services/code.service';
 
 @Component({

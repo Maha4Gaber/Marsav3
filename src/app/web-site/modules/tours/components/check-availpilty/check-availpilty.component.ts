@@ -4,10 +4,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { HttpService } from '../../../../../core/services/http/http.service';
-import { AuthService } from '../../../../../shared/services/auth.service';
-import { HeaderService } from '../../../../../shared/services/header.service';
-import { environment } from '../../../../../../environments/environment.prod';
+import { HttpService } from 'src/app/core/services/http/http.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { HeaderService } from 'src/app/shared/services/header.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-check-availpilty',
